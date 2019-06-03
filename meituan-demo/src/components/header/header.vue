@@ -24,19 +24,44 @@
 				<div class="background">
 					<img :src="seller.avatar" width="100%" height="100%"/>
 				</div>
-				<div v-show="detailShow" class="detail">
-					<div class="detail-wrapper clearfix">
-						<div class="detail-main">
-							<h1 class="name">标题</h1>
-							<div class="star-wrapper">
-								<star :size='48' :score='seller.score'></star>
+				<transition name="fade"	
+								enter-class="fade-enter" 
+								enter-to-class="fade-enter-to" 
+								leave-class="fade-leave" 
+								leave-to-class="fade-leave-to">
+					<div v-show="detailShow" class="detail">
+						<div class="detail-wrapper clearfix">
+							<div class="detail-main">
+								<h1 class="name">标题</h1>
+								<div class="star-wrapper">
+									<star :size='48' :score='seller.score'></star>
+								</div>
+								<div class="title">
+									<div class="line"/>
+									<div class="text">优惠信息</div>
+									<div class="line"/>
+								</div>
+								<div v-if='seller.supports' class="supports">
+									<li class="support-item" v-for="item in seller.supports" :key="item.type">
+										<span class="icon" :class="classMap[item.type]"></span>
+										<span class="text">{{item.description}}</span>
+									</li>
+								</div>
+								<div class="title">
+									<div class="line"/>
+									<div class="text">商家信息</div>
+									<div class="line"/>
+								</div>
+								<div class="bulletin">
+									<p class="content">{{seller.bulletin}}</p>
+								</div>
 							</div>
 						</div>
+						<div class="detail-close" @click="hideDetail">
+							<span>关</span>
+						</div>
 					</div>
-					<div class="detail-close">
-						<span>关</span>
-					</div>
-				</div>
+				</transition>
 		</div>
 </template>
 
@@ -55,7 +80,10 @@ export default {
 	},
 	methods: {
 		showDetail () {
-			this.detailShow = !this.detailShow
+			this.detailShow = true
+		},
+		hideDetail () {
+			this.detailShow = false
 		}
 	},
 	created () {
@@ -165,7 +193,13 @@ export default {
 			width 100%
 			height 100%
 			overflow auto
+			backdrop-filter blur(10px)
 			background-color rgba(7,17,27,0.8)
+			transition all 0.5s
+			&.fade-enter, &.fade-leave-to
+				opacity 0
+			&.fade-leave, &.face-enter-to
+				opacity 1
 			.detail-wrapper
 				min-height 100%
 				width 100%
@@ -181,6 +215,56 @@ export default {
 						margin-top 18px
 						padding 2px 0
 						text-align center
+					.title
+						display flex
+						width 80%
+						margin 28px auto 24px auto
+						.line
+							flex 1
+							position relative
+							top -6px
+							border-bottom 1px solid rgba(255,255,255,0.5)
+						.text
+							padding 0 12px
+							font-weight 700
+							font-size 14px
+					.supports
+						width 80%
+						margin 0 auto
+						.support-item
+							padding 0 12px
+							margin-bottom 12px
+							font-size 0
+							&:last-child
+								margin-bottom 0
+							.icon
+								display inline-block
+								width 16px
+								height 16px
+								vertical-align top
+								margin-right 6px
+								background-size 16px 16px
+								background-repeat no-repeat
+								&.decrease
+									bg-image('decrease_1')
+								&.discount
+									bg-image('discount_1')
+								&.guarantee
+									bg-image('guarantee_1')
+								&.invoice
+									bg-image('invoice_1')
+								&.special
+									bg-image('special_1')
+							.text
+								line-height 16px
+								font-size 10px
+					.bulletin
+						width 80%
+						margin 0 auto
+						.content
+							padding 0 12px
+							line-height 24px
+							font-size 12px
 			.detail-close
 				position relative
 				width 32px
