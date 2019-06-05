@@ -75,7 +75,7 @@ export default {
 	},
 	data () {
 		return {
-			detailShow: true
+			detailShow: false
 		}
 	},
 	methods: {

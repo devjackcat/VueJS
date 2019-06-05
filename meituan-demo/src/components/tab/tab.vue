@@ -2,7 +2,7 @@
     <div>
         <div class="tab border-1px">
             <div class="tab-item">
-                <router-link to="/goods" class="hahahah">商品</router-link>
+                <router-link to="/" class="hahahah">商品</router-link>
             </div>
             <div class="tab-item">
                 <router-link to="/rating">评论</router-link>
