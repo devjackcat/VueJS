@@ -2,7 +2,8 @@
   <div id="app">
     <v-header :seller='seller'></v-header>
     <v-tab></v-tab>
-    <v-content></v-content>
+    <!-- <v-content></v-content> -->
+    <v-shoppingcart></v-shoppingcart>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import Header from '@/components/header/header'
 import Tab from '@/components/tab/tab'
 import Content from '@/components/content/content'
+import ShoppingCart from '@/components/shoppingcart/shoppingcart'
 
 export default {
   name: 'App',
@@ -49,7 +51,8 @@ export default {
   components: {
     'v-header': Header,
     'v-tab': Tab,
-    'v-content': Content
+    'v-content': Content,
+    'v-shoppingcart':ShoppingCart
   }
 }
 </script>
