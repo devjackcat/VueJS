@@ -6,31 +6,114 @@
       </div>
       <div class="cell cell-2">
         <div class="dot"></div>
+      </div>
+      <div class="cell cell-3">
         <div class="dot"></div>
       </div>
-      <div class="cell cell-3"></div>
-      <div class="cell cell-4"></div>
-      <div class="cell cell-5"></div>
-      <div class="cell cell-6"></div>
-      <div class="cell cell-7"></div>
+      <div class="cell cell-4">
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-5">
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-6">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-7">
+        <div class="sub-row-1">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="sub-row-2">
+          <div class="dot"></div>
+        </div>
+        <div class="sub-row-3">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
     </div>
     <div class="row row-2">
-      <div class="cell cell-1"></div>
-      <div class="cell cell-2"></div>
-      <div class="cell cell-3"></div>
-      <div class="cell cell-4"></div>
-      <div class="cell cell-5"></div>
-      <div class="cell cell-6"></div>
-      <div class="cell cell-7"></div>
+      <div class="cell cell-1">
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-2">
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-3">
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-4">
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-5">
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-6">
+        <div class="sub-row-1">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="sub-row-2">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <div class="cell cell-7">
+        <div class="sub-row-1">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="sub-row-2">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
     </div>
     <div class="row row-3">
-      <div class="cell cell-1"></div>
-      <div class="cell cell-2"></div>
-      <div class="cell cell-3"></div>
-      <div class="cell cell-4"></div>
-      <div class="cell cell-5"></div>
-      <div class="cell cell-6"></div>
-      <div class="cell cell-7"></div>
+      <div class="cell cell-1">
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-2">
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-3">
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-4">
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-5">
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-6">
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="cell cell-7">
+        <div class="sub-row-1">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="sub-row-2">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="sub-row-3">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -60,7 +143,7 @@ export default {
         width 100px
         height 100%
         margin-right 10px
-        border 1px solid blue
+        background-color black
         border-radius 10px
         &:last-child
           margin-right 0
@@ -68,10 +151,102 @@ export default {
           width 30px
           height 30px
           border-radius 15px
-          background-color black
-        &.cell-1
-          background-color red
-          .dot 
-            background-color yellow
+          background-color white
+      .cell-1
+        justify-content flex-start
+      .cell-2
+        justify-content center
+      .cell-3
+        justify-content flex-end
+    .row-1
+      .cell-1,.cell-2,.cell-3
+        align-items flex-start
+      .cell-4
+        justify-content space-between
+      .cell-5
+        flex-direction column
+        align-items flex-end
+      .cell-6
+        .dot:nth-child(1)
+          align-self flex-start
+        .dot:nth-child(2)
+          align-self center
+        .dot:nth-child(3)
+          align-self flex-end
+      .cell-7
+        flex-direction column
+        .sub-row-1
+          display flex
+          justify-content space-between
+        .sub-row-2
+          display flex
+          justify-content center
+        .sub-row-3
+          display flex
+          justify-content space-between
+    .row-2
+      .cell-1,.cell-2,.cell-3
+        align-items center
+      .cell-4
+        flex-direction column
+        justify-content space-between
+      .cell-5
+        align-items flex-end
+      .cell-6
+        flex-direction row
+        .sub-row-1
+          display flex
+          flex-direction column
+          justify-content space-between
+        .sub-row-2
+          display flex
+          flex-direction column
+          justify-content space-between
+      .cell-7
+        display flex
+        .sub-row-1
+          display flex
+          flex-direction column
+          justify-content space-between
+        .sub-row-2
+          display flex
+          flex-direction column
+          justify-content space-between
+    .row-3
+      .cell-1,.cell-2,.cell-3
+        align-items flex-end
+      .cell-4
+        flex-direction column
+        justify-content flex-start
+        .dot:nth-child(2)
+            align-self center
+      .cell-5
+        flex-direction column
+        justify-content flex-start
+        .dot:nth-child(2)
+          align-self flex-end
+      .cell-6
+        justify-content space-between
+        .dot:nth-child(2)
+          align-self flex-end
+      .cell-7
+        display flex
+        flex-direction column
+        align-content s
+        .sub-row-1
+          display flex
+          flex-direction column
+          justify-content space-between
+          height 100%
+        .sub-row-2
+          display flex
+          flex-direction column
+          justify-content flex-end
+          height 100%
+        .sub-row-3
+          display flex
+          flex-direction column
+          justify-content space-between
+          height 100%
 </style>
 
