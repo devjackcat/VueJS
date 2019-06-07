@@ -1,0 +1,12 @@
+{
+  "name": "static-web",
+  "version": "1.0.0",
+  "description": "A Vue.js project",
+  "author": "永平 <yongping@anve.com>",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
