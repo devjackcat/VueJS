@@ -1,10 +1,3 @@
-const express = require('express')
-var bodyParser = require('body-parser');
-const axios = require('axios')
-const app = express()
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static('public'));
 
 var HttpTool = {
   baseurl:'http://218.90.150.158:12000/',
@@ -59,63 +52,5 @@ var HttpTool = {
   }
 }
 
-
-// 自定义跨域中间件
-var allowCors = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Access-Control-Allow-Credentials','true');
-  next();
-};
-app.use(allowCors);//使用跨域中间件
-
-app.post('/api/:service/:op', function(req, res){
-
-  var service = req.params.service
-  if(!service) {
-    res.json({
-      success:false,
-      code:9999,
-      msg:'service不能为空'
-    })
-    return;
-  }
-
-  var op = req.params.op
-  if(!op) {
-    res.json({
-      success:false,
-      code:9999,
-      msg:'op不能为空'
-    })
-    return;
-  }
-
-  var params = req.body
-  HttpTool.post(service,op,params)
-  .then(data => {
-    res.json(data);
-    console.log('-----'+data);
-  })
-  .catch(err => {
-    res.json(err);
-    console.log('-----'+err);
-  })
-})
-
-app.listen(3002);
-
-// httpTool.post('Service1','Login_Check',{
-//   Name:'1502009',
-//   Pwd:'cfzzfc',
-//   CompanyNo:'sjk008',
-//   os:'ios'
-// })
-// .then(data => {
-//   console.log('-----'+data);
-// })
-// .catch(err => {
-//   console.log('-----'+err);
-// })
-
+// export default HttpTool;
+module.exports=HttpTool

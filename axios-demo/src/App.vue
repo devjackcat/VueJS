@@ -8,22 +8,23 @@
 
 <script>
 import axios from 'axios'
+axios.defaults.baseURL = 'http://devjackcat.com:3002/api'
 export default {
   name: 'App',
   methods:{
+
     test(){
-      axios({
-        method: 'post',
-        url:'http://localhost:3000/login',
-      }).then(function (response) {
-        console.log("-----response----");
+      var data = { Name:'1502009', Pwd:'cfzzfc', CompanyNo:'sjk008', os:'ios' }
+      var url = '/Service1/Login_Check'
+      axios.post(url,data)
+      .then(function (response) {
         console.log(response.data);
       })
       .catch(function (error) {
-        console.log("-----error----");
         console.log(error);
-      });;
+      });
     }
+
   }
 }
 </script>
