@@ -13,13 +13,17 @@ var HttpTool = {
     var url = this.baseurl + service + '.asmx?op=' + op
     var paramString = this.getParamString(params)
     var bodyXml = this.getBodyXml(op,paramString)
+    var soapAction = 'http://tempuri.org/' + op
     _this = this
 
     return new Promise(function(resolve,reject){
       axios({
         method: 'post',
         url: url,
-        headers:{ 'Content-Type': 'text/xml' },
+        headers:{ 
+          'Content-Type': 'text/xml; charset=utf-8',
+          'SOAPAction':soapAction
+        },
         data: bodyXml,
       }).then(function (response) {
         if(response.data){
@@ -55,7 +59,7 @@ var HttpTool = {
   },
 
   getBodyXml:function(action,paramString){
-    return `<?xml version="1.0" encoding="utf-8"?><soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope"><soap12:Body><${action} xmlns="http://tempuri.org/">${paramString}</${action}></soap12:Body></soap12:Envelope>`
+    return `<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://www.w3.org/2003/05/soap-envelope"><soap:Body><${action} xmlns="http://tempuri.org/">${paramString}</${action}></soap:Body></soap:Envelope>`
   }
 }
 
@@ -96,11 +100,11 @@ app.post('/api/:service/:op', function(req, res){
   HttpTool.post(service,op,params)
   .then(data => {
     res.json(data);
-    console.log('-----'+data);
+    // console.log('-----'+data);
   })
   .catch(err => {
     res.json(err);
-    console.log('-----'+err);
+    // console.log('-----'+err);
   })
 })
 
