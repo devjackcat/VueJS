@@ -27,7 +27,9 @@ var HttpTool = {
         data: bodyXml,
       }).then(function (response) {
         if(response.data){
-          var data = _this.parse(response.data)
+          //去除返回数中的\n
+          let dataString = response.data.replace(/\r\n/g,"")
+          let data = _this.parse(dataString)
           if(data){
             resolve(data)
           }else{
@@ -100,7 +102,7 @@ app.post('/api/:service/:op', function(req, res){
   HttpTool.post(service,op,params)
   .then(data => {
     res.json(data);
-    // console.log('-----'+data);
+    console.log('-----'+data);
   })
   .catch(err => {
     res.json(err);
